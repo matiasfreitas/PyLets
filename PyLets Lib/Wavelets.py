@@ -13,7 +13,7 @@ def WaleNormaliza(funcWavelet,tempo,dilat,posic):
     Energia = EnergiaWale(wavelet)
     return 1/(Energia**(1/2))*(wavelet)
 
-def WaleNormaliza(funcWavelet,tempo,dilat,posic):
+def WaleNotNormaliza(funcWavelet,tempo,dilat,posic):
     wavelet = funcWavelet(tempo,dilat,posic)
     return wavelet
 
