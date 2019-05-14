@@ -13,6 +13,10 @@ def WaleNormaliza(funcWavelet,tempo,dilat,posic):
     Energia = EnergiaWale(wavelet)
     return 1/(Energia**(1/2))*(wavelet)
 
+def WaleNormaliza(funcWavelet,tempo,dilat,posic):
+    wavelet = funcWavelet(tempo,dilat,posic)
+    return wavelet
+
 def HermitianHat (tempo,dilat,posic ):
     """Retornar um array das posições de uma OndaLet(Chápeu de Hermitian) em relação ao tempo
     
