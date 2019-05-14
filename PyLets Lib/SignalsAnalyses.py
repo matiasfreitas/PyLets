@@ -1,7 +1,6 @@
 import math
 import numpy as np
 import scipy.integrate as integrate
-import Wavelet as wale
 
 def TransFourier(tempo, sinal):
     """Analisa as frequencias de um sinal a partir da transformada de fourier
