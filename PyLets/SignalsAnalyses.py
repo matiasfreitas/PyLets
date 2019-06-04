@@ -23,5 +23,10 @@ def TransWaleConti(tempo, dilatRange, RealSinal, WaveletFunction, WaveletType):
             linha = np.append( (1/(a**1/2))*WaveletTransform, linha)
         print(100/dilatRange[-1]*a)
         matrix = np.append(linha, matrix)
-    matrix = matrix.reshape(len(RealSinal), len(dilatRange))
+    matrix = matrix.reshape(len(dilatRange), len(RealSinal))
     return matrix
+
+
+
+
+
