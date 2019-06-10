@@ -1,22 +1,25 @@
 import math
 import numpy as np
-import scipy.integrate as integrate
-
+from numba import jit, njit
+from scipy import integrate
+@njit
 def SinalBasico(Tempo, Frequencia, Amplitude):
     return Amplitude*np.sin(Frequencia*2*np.pi*Tempo)
 
+@jit
 def EnergiaWale(arrayWavelet):
-    return integrate.simps((arrayWavelet)**2)
+    return np.trapz((arrayWavelet)**2)
 
+@jit
 def WaleNormaliza(funcWavelet,tempo,dilat,posic):
     wavelet = funcWavelet(tempo,dilat,posic)
     Energia = EnergiaWale(wavelet)
     return 1/(Energia**(1/2))*(wavelet)
-
+njit
 def WaleNotNormaliza(funcWavelet,tempo,dilat,posic):
     wavelet = funcWavelet(tempo,dilat,posic)
     return wavelet
-
+@jit
 def HermitianHat (tempo,dilat,posic ):
     """Retornar um array das posições de uma OndaLet(Chápeu de Hermitian) em relação ao tempo
     
@@ -30,7 +33,7 @@ def HermitianHat (tempo,dilat,posic ):
 
     t = ((tempo-posic)/dilat)
     return 2/(5**(1/2))*math.pi**-(1/4)*t*(1+t)*math.e**((-1/2)*t**2)
-
+@njit
 def MexicanHat (tempo,dilat,posic):
     """Retornar um array das posições de uma OndaLet(Chápeu de mexicano) em relação ao tempo
     
@@ -43,7 +46,7 @@ def MexicanHat (tempo,dilat,posic):
         Retorna um Array 2D com os valores de Amplitude em relação ao tempo."""
     t = ((tempo-posic)/dilat)
     return (1-t**2)*math.e**((t**2/2)*-1)
-    
+@jit   
 def MeyerWale (tempo,dilat,posic ):
     """Retornar um array das posições de uma OndaLet(Meyer) em relação ao tempo
     
@@ -67,7 +70,7 @@ def MeyerWale (tempo,dilat,posic ):
             output = output 
         outputArray = np.append(output, outputArray)
     return outputArray
-
+@jit
 def HermitianWale1(tempo,dilat,posic):
 
     t = ((tempo-posic)/dilat)
