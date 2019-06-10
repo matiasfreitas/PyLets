@@ -32,4 +32,4 @@ def WaveletPlotly(data, name):
 
     fig = go.Figure(data=data, layout=layout)
 
-    plt.plot(fig, filename= name + ".html")
+    plot.plot(fig, filename= name + ".html")
