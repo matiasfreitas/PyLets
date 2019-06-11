@@ -1,7 +1,7 @@
 from matplotlib import pyplot as plt
 
 #    MatPlot
-def WaleMatPlot(tempo, sinal, salve = 1, name = "Sinal.png"):
+def WaleMatPlot(tempo, sinal, salve = 1, name = "Sinal.png", real = 1):
     """Gera um gráfico em Matplotlib de linha feito para demonstração grafica de sinais
     Argumentos: 
         Tempo: Um numpy array com os valores do tempo
@@ -17,7 +17,14 @@ def WaleMatPlot(tempo, sinal, salve = 1, name = "Sinal.png"):
     plt.ylabel("Amplitude")
     plt.xlabel("Time [s]")
     for x in sinal:
-        plt.plot(tempo, x)
+        if real:
+            X = [d.real for d in x]
+            Y = [y.imag for y in x]
+            plt.plot(tempo, X)
+            plt.plot(tempo, Y)
+        else:
+            plt.plot(tempo, x)
+
     if salve:
         plt.savefig(name)
         plt.clf()
